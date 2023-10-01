@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+        sudo service docker start
+        sudo docker --version
+
+    - name: Build the Docker image
+      run: |
+        docker build -t my-python-app .
+
+    - name: Log in to Docker Hub (or another registry)
+      run: |
+        echo "${{ secrets.password123 }}" | docker login -u "${{ secrets.mshayanb7 }}" --password-stdin
+
+    - name: Push Docker image
+      run: |
+        docker push my-python-app
+
+
