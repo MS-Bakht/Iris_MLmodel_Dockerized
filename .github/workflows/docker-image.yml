@@ -22,5 +22,5 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker buildx create --use
-          docker buildx build -t mshayanb7/irisml .
+          docker buildx build -t mshayanb7/irisml --push .
           docker push mshayanb7/irisml:latest
