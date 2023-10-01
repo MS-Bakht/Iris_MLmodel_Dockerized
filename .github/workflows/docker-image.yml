@@ -29,7 +29,7 @@ jobs:
 
     - name: Log in to Docker Hub (or another registry)
       run: |
-        echo "${{ secrets.password123 }}" | docker login -u "${{ secrets.mshayanb7 }}" --password-stdin
+        echo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}" --password-stdin
 
     - name: Push Docker image
       run: |
